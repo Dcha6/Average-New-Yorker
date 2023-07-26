@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements.Experimental;
 
 public class Player : MonoBehaviour
 {
@@ -12,11 +13,13 @@ public class Player : MonoBehaviour
     public Camera cam;
 
     public int health;
+    public int experience;
+    public int level;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        level = 1;
     }
     // Update is called once per frame
     void Update()
@@ -32,9 +35,13 @@ public class Player : MonoBehaviour
         Vector2 lookDirection = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
 
     }
-    
+
     public void TakeDamage(int damage)
     {
         health -= damage;

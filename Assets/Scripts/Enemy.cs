@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    
     public int health = 100;
+    public int damage = 1;
+
+    public GameObject deathEffect;
+    public float deathEffectTimer;
 
     //Follow function
     public Rigidbody2D rb;
-    public GameObject target;
+    GameObject target;
     public Transform player;
     public float moveSpeed;
     public Vector3 directionToTarget;
@@ -32,7 +35,11 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
+        Player player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            player.TakeDamage(damage);
+        }
     }
 
     void MoveMonster()
@@ -68,6 +75,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-
+        GameObject deatheffect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(deatheffect, deathEffectTimer);
+        Destroy(gameObject);
     }
 }

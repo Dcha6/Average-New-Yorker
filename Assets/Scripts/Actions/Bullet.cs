@@ -23,14 +23,14 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        //TopDownEnemy enemy = other.GetComponent<TopDownEnemy>();
-        //if(enemy != null)
-        //{
-        //    enemy.TakeDamage(damage);
-        //}
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
+        GameObject effect = Instantiate(hiteffect, transform.position, Quaternion.identity);
+        Destroy(effect, effectTimer);
         Destroy(gameObject);
-
-
     }
     void OnCollisionEnter2D(Collision2D other)
     {

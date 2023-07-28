@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 1302383987332002297}
   - component: {fileID: 1302383987332002296}
   - component: {fileID: 8031583815674349497}
+  - component: {fileID: -163191889938844571}
   - component: {fileID: 599208057582028248}
   - component: {fileID: 867341853}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +109,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &-163191889938844571
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302383987332002301}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.12, y: 5.12}
+  m_EdgeRadius: 0
 --- !u!61 &599208057582028248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,8 +174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  damage: 100
+  deathEffect: {fileID: 7071345412267189236, guid: 2de1490c79923bf43b75b558f491abda, type: 3}
+  deathEffectTimer: 0.2
   rb: {fileID: 8031583815674349497}
-  target: {fileID: 0}
   player: {fileID: 869652161594817279, guid: 43806c167eb7a7748bd5b46f7d7711df, type: 3}
-  moveSpeed: 20
+  moveSpeed: 15
   directionToTarget: {x: 0, y: 0, z: 0}

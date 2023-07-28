@@ -229,6 +229,8 @@ MonoBehaviour:
   moveSpeed: 8
   rb: {fileID: 1529141121}
   cam: {fileID: 0}
+  deathEffect: {fileID: 7071345412267189236, guid: 2de1490c79923bf43b75b558f491abda, type: 3}
+  deathEffectTimer: 0.2
   health: 100
   experience: 0
   level: 0

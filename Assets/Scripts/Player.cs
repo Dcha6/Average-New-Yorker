@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     Vector2 movement;
     public Camera cam;
 
+    public GameObject deathEffect;
+    public float deathEffectTimer;
+
     public int health;
     public int experience;
     public int level;
@@ -52,6 +55,8 @@ public class Player : MonoBehaviour
     }
     void Die()
     {
-
+        GameObject playerEffect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(playerEffect, deathEffectTimer);
+        Destroy(this.gameObject);
     }
 }

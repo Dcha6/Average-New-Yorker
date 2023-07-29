@@ -231,8 +231,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   deathEffect: {fileID: 7071345412267189236, guid: 2de1490c79923bf43b75b558f491abda, type: 3}
   deathEffectTimer: 0.2
-  health: 100
-  experience: 0
+  maxHealth: 100
+  maxExp: 0
   level: 0
 --- !u!114 &2714244507642995945
 MonoBehaviour:

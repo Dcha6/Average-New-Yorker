@@ -5,18 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 100;
-    public int damage = 1;
-
-    public GameObject deathEffect;
-    public float deathEffectTimer;
-
-    //Follow function
     public Rigidbody2D rb;
     GameObject target;
     public Transform player;
     public float moveSpeed;
     public Vector3 directionToTarget;
+
+    public int maxHealth = 100;
+    int currentHealth;
+
+    public int damage;
+
+    public GameObject deathEffect;
+    public float deathEffectTimer;
+
+    public GameObject experience;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,7 @@ public class Enemy : MonoBehaviour
         target = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = Random.Range(1f, 3f);
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -35,11 +39,19 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = other.GetComponent<Player>();
-        if (player != null)
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            player.TakeDamage(damage);
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            }
         }
+
     }
 
     void MoveMonster()
@@ -65,8 +77,8 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if(health <= 0)
+        currentHealth -= damage;
+        if(currentHealth <= 0)
         {
             Die();
         }
@@ -78,5 +90,6 @@ public class Enemy : MonoBehaviour
         GameObject deatheffect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(deatheffect, deathEffectTimer);
         Destroy(gameObject);
+        Instantiate(experience, transform.position, Quaternion.identity);
     }
 }

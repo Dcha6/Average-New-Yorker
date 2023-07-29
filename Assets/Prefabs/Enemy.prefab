@@ -173,11 +173,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa534e2f282a1534480e834eb7515f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  damage: 100
-  deathEffect: {fileID: 7071345412267189236, guid: 2de1490c79923bf43b75b558f491abda, type: 3}
-  deathEffectTimer: 0.2
   rb: {fileID: 8031583815674349497}
   player: {fileID: 869652161594817279, guid: 43806c167eb7a7748bd5b46f7d7711df, type: 3}
   moveSpeed: 15
   directionToTarget: {x: 0, y: 0, z: 0}
+  health: 100
+  damage: 10
+  deathEffect: {fileID: 7071345412267189236, guid: 2de1490c79923bf43b75b558f491abda, type: 3}
+  deathEffectTimer: 0.2
+  experience: {fileID: 8056574736102701025, guid: 9d2e37c876e61204991df07e2db4d9b6, type: 3}

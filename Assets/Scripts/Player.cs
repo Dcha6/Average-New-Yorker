@@ -15,14 +15,20 @@ public class Player : MonoBehaviour
     public GameObject deathEffect;
     public float deathEffectTimer;
 
-    public int health;
-    public int experience;
+    public int maxHealth = 100;
+    int currentHealth;
+
+    public int maxExp = 0;
+    int currentExp;
+
     public int level;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        level = 1;
+        currentHealth = maxHealth;
+        currentExp = maxExp;
+        level = 0;
     }
     // Update is called once per frame
     void Update()
@@ -30,6 +36,7 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        LevelUpCheck();
     }
 
     void FixedUpdate()
@@ -42,13 +49,27 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+    }
 
+    public void LevelUpCheck()
+    {
+        Debug.Log("level check");
+        if(currentExp == 5)
+        {
+            level += 1;
+            currentExp = 0;
+        }
+    }
+
+    public void increaseExp()
+    {
+        currentExp += 1;
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             Die();
         }

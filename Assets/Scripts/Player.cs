@@ -18,17 +18,25 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
 
-    public int maxExp = 0;
+    //Experience
+    int maxExp;
     int currentExp;
 
-    public int level;
+    //Health bar
+    int prevLvl;
+    int currentLvl;
+
+    //Upgrades
+    public bool isUpgrading = false; 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        currentExp = maxExp;
-        level = 0;
+        currentExp = 0;
+        currentLvl = 0;
+        prevLvl = 0;
+        maxExp = 3;
     }
     // Update is called once per frame
     void Update()
@@ -37,6 +45,7 @@ public class Player : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         LevelUpCheck();
+        UpgradeCheck();
     }
 
     void FixedUpdate()
@@ -51,19 +60,34 @@ public class Player : MonoBehaviour
     {
     }
 
+    public void UpgradeCheck()
+    {
+        Debug.Log("upgrade check");
+        if(currentLvl > prevLvl)
+        {
+            prevLvl = currentLvl;
+            isUpgrading = true;
+            //something happens for upgrade
+            Debug.Log("upgraded");
+        }
+    }
+
     public void LevelUpCheck()
     {
         Debug.Log("level check");
-        if(currentExp == 5)
+        if(currentExp == maxExp)
         {
-            level += 1;
+            currentLvl += 1;
             currentExp = 0;
+            maxExp++;
+            Debug.Log("leveled up");
         }
     }
 
     public void increaseExp()
     {
         currentExp += 1;
+        Debug.Log("exp up");
     }
 
     public void TakeDamage(int damage)
